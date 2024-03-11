@@ -1,0 +1,6 @@
+App\Entity\User:
+  admin:
+    username: admin
+    email: admin@domaine.fr
+    password: \$2y\$10\$auRci6M20kve7RGGJraS5.w7uEuA4gBuRWF8vsEt7BdoQNBNBnoxq
+    roles: "[ROLE_ADMINISTRATOR]"
