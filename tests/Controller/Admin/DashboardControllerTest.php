@@ -2,7 +2,10 @@
 
 namespace App\Tests\Controller\Admin;
 
+use App\Controller\Admin\UserCrudController;
 use App\Repository\UserRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -23,7 +26,16 @@ final class DashboardControllerTest extends WebTestCase
         /** @var UserInterface */
         $testUser = $userRepository->find(1);
         $client->loginUser($testUser);
-        $client->request('GET', '/admin');
+
+        /** @var AdminUrlGenerator */
+        $adminUrlGenerator = static::getContainer()->get(AdminUrlGenerator::class);
+        $path = $adminUrlGenerator->setController(UserCrudController::class)
+            ->setEntityId(1)
+            ->setAction(Action::DETAIL)
+            ->generateUrl()
+        ;
+
+        $client->request('GET', $path);
 
         $this->assertResponseIsSuccessful();
     }
