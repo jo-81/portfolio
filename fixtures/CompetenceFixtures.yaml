@@ -1,0 +1,8 @@
+App\Entity\Competence:
+  competence_1:
+    name: "PHP"
+    color: "#484C89"
+
+  competence_{2..20}:
+    name (unique): "<word()>"
+    color: "<hexColor()>"
