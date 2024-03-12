@@ -24,8 +24,8 @@ class CompetenceCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name', 'Nom'),
-            SlugField::new('slug')->setTargetFieldName('name'),
-            BooleanField::new('published', 'Publié ?'),
+            SlugField::new('slug')->setTargetFieldName('name')->hideOnForm(),
+            BooleanField::new('published', 'Publié ?')->hideOnForm(),
             ColorField::new('color', 'Couleur'),
         ];
     }
@@ -37,13 +37,15 @@ class CompetenceCrudController extends AbstractCrudController
 
             ->setPageTitle('detail', 'Compétence : %entity_label_singular%')
             ->setPageTitle('edit', 'Modifier %entity_label_singular%')
+            ->setPageTitle('new', 'Ajouter une %entity_label_singular%')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
 
             ->setEntityLabelInSingular(
-                fn (?Competence $competence) => $competence ? $competence->__toString() : 'Compétence'
+                fn (?Competence $competence) => $competence ? $competence->__toString() : 'compétence'
             )
 
             ->setPaginatorPageSize(15)
+            ->setDefaultSort(['id' => 'ASC'])
         ;
     }
 

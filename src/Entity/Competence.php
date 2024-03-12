@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\CompetenceRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CompetenceRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('name')]
 class Competence
 {
     #[ORM\Id]
@@ -16,6 +19,7 @@ class Competence
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
@@ -25,6 +29,7 @@ class Competence
     private ?bool $published = null;
 
     #[ORM\Column(length: 30)]
+    #[Assert\CssColor]
     private ?string $color = null;
 
     public function getId(): ?int
