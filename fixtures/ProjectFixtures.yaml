@@ -1,0 +1,12 @@
+App\Entity\Project:
+  project_1:
+    title: "Le titre du projet"
+    content: "<text(500)>"
+    competences: "<numberBetween(1, 20)>x @competence_*"
+    
+  project_{2..10}:
+    title (unique): "<words(3, true)>"
+    content: "<text(500)>"
+    competences: "<numberBetween(1, 20)>x @competence_*"
+    github: '50%? <url()>'
+    link (unique): '<url()>'
