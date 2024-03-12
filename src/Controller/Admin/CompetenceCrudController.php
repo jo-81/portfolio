@@ -33,11 +33,15 @@ class CompetenceCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('compétence')
             ->setEntityLabelInPlural('compétences')
-            ->setPageTitle('detail', 'Mon %entity_label_singular%')
-            ->setPageTitle('edit', 'Modifier mon %entity_label_singular%')
+
+            ->setPageTitle('detail', 'Compétence : %entity_label_singular%')
+            ->setPageTitle('edit', 'Modifier %entity_label_singular%')
             ->setPageTitle('index', 'Liste des %entity_label_plural%')
+
+            ->setEntityLabelInSingular(
+                fn (?Competence $competence) => $competence ? $competence->__toString() : 'Compétence'
+            )
 
             ->setPaginatorPageSize(15)
         ;
