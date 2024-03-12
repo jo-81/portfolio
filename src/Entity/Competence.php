@@ -24,7 +24,6 @@ class Competence
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    #[Assert\NotBlank]
     private ?string $slug = null;
 
     #[ORM\Column]

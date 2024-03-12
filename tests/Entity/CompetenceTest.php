@@ -30,13 +30,6 @@ final class CompetenceTest extends Entity
         $this->assertHasErrors($competence, 1);
     }
 
-    public function testBadSlug(): void
-    {
-        $competence = $this->getCompetence();
-        $competence->setSlug('');
-        $this->assertHasErrors($competence, 1);
-    }
-
     public function testUniqueSlug(): void
     {
         $competence = $this->getCompetence();
