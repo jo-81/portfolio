@@ -8,11 +8,11 @@ final class CompetenceTest extends Entity
 {
     public function getCompetence(): Competence
     {
-        return (new Competence)
+        return (new Competence())
             ->setName('une compétence')
             ->setSlug('une-competence')
             ->setPublished(true)
-            ->setColor("#000")
+            ->setColor('#000')
         ;
     }
 
@@ -27,6 +27,20 @@ final class CompetenceTest extends Entity
     {
         $competence = $this->getCompetence();
         $competence->setName('PHP');
+        $this->assertHasErrors($competence, 1);
+    }
+
+    public function testBadSlug(): void
+    {
+        $competence = $this->getCompetence();
+        $competence->setSlug('');
+        $this->assertHasErrors($competence, 1);
+    }
+
+    public function testUniqueSlug(): void
+    {
+        $competence = $this->getCompetence();
+        $competence->setSlug('php');
         $this->assertHasErrors($competence, 1);
     }
 

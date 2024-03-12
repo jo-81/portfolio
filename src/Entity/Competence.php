@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use App\Repository\CompetenceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CompetenceRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity('name')]
+#[UniqueEntity('slug')]
 class Competence
 {
     #[ORM\Id]
@@ -23,6 +24,7 @@ class Competence
     private ?string $name = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotBlank]
     private ?string $slug = null;
 
     #[ORM\Column]

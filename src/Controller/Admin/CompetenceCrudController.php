@@ -24,7 +24,7 @@ class CompetenceCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name', 'Nom'),
-            SlugField::new('slug')->setTargetFieldName('name')->hideOnForm(),
+            SlugField::new('slug')->setTargetFieldName('name')->hideWhenCreating(),
             BooleanField::new('published', 'Publié ?')->hideOnForm(),
             ColorField::new('color', 'Couleur'),
         ];
