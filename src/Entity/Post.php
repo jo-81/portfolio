@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 ]
 #[DiscriminatorMap(
     typeProperty: 'discr',
-    mapping: ['post' => 'Post', 'project' => 'Project'])
+    mapping: ['post' => 'Post', 'project' => 'Project', 'article' => 'Article'])
 ]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity('title')]
@@ -148,6 +148,11 @@ abstract class Post
         $this->competences->removeElement($competence);
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->title ?? '';
     }
 
     #[ORM\PrePersist]
