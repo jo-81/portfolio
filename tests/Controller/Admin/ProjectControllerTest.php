@@ -40,6 +40,8 @@ final class ProjectControllerTest extends AbstractCrudTestCase
             ['index', null],
             ['detail', 1],
             ['new', null],
+            ['edit', 1],
+            ['delete', 1],
         ];
     }
 }

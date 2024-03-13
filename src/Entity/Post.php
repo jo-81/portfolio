@@ -54,10 +54,6 @@ abstract class Post
     protected ?\DateTimeImmutable $editedAt = null;
 
     #[ORM\ManyToMany(targetEntity: Competence::class, inversedBy: 'posts')]
-    #[Assert\Count(
-        min: 1,
-        minMessage: 'Vous devez choisir au moins une compétence',
-    )]
     protected Collection $competences;
 
     public function __construct()
