@@ -6,6 +6,7 @@ use App\Repository\ProjectRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -15,9 +16,11 @@ class Project extends Post
     protected ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank()]
     protected ?string $content = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Url]
     protected ?string $github = null;
 
     public function getId(): ?int

@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -28,17 +29,21 @@ class ProjectCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('title'),
-            SlugField::new('slug')->setTargetFieldName('title'),
-            DateField::new('createdAt', 'Publié le'),
-            DateField::new('editedAt', 'Modifié le')->hideOnIndex(),
+            TextField::new('title', 'Titre'),
+            SlugField::new('slug')->setTargetFieldName('title')->hideOnForm(),
+            DateField::new('createdAt', 'Publié le')->hideOnForm(),
+            DateField::new('editedAt', 'Modifié le')->hideOnIndex()->hideOnForm(),
             UrlField::new('github', 'Github')->hideOnIndex(),
             UrlField::new('link', 'Website')->hideOnIndex(),
             TextEditorField::new('content', 'Contenue')->hideOnIndex(),
 
-            CollectionField::new('competences')->onlyOnDetail()->setTemplatePath('admin/fields/competences.html.twig'),
+            CollectionField::new('competences', 'Compétences')
+                ->onlyOnDetail()
+                ->setTemplatePath('admin/fields/competences.html.twig'),
 
-            BooleanField::new('published', 'Publié ?'),
+            AssociationField::new('competences', 'Compétences')->onlyOnForms(),
+
+            BooleanField::new('published', 'Publié ?')->hideOnForm(),
         ];
     }
 

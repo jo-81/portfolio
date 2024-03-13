@@ -38,6 +38,8 @@ final class ProjectControllerTest extends AbstractCrudTestCase
     {
         return [
             ['index', null],
+            ['detail', 1],
+            ['new', null],
         ];
     }
 }

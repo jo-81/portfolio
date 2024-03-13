@@ -8,7 +8,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\InheritanceType;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[InheritanceType('JOINED')]
@@ -21,6 +25,7 @@ use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
     mapping: ['post' => 'Post', 'project' => 'Project'])
 ]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('title')]
 abstract class Post
 {
     #[ORM\Id]
@@ -29,12 +34,17 @@ abstract class Post
     protected ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
+    #[Assert\Sequentially([
+        new NotBlank(),
+        new Length(min: 6, minMessage: 'Le titre du post doit avoir au minimum {{ limit }} caractères'),
+    ])]
     protected ?string $title = null;
 
     #[ORM\Column]
     protected ?bool $published = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Url]
     protected ?string $link = null;
 
     #[ORM\Column]
@@ -44,6 +54,10 @@ abstract class Post
     protected ?\DateTimeImmutable $editedAt = null;
 
     #[ORM\ManyToMany(targetEntity: Competence::class, inversedBy: 'posts')]
+    #[Assert\Count(
+        min: 1,
+        minMessage: 'Vous devez choisir au moins une compétence',
+    )]
     protected Collection $competences;
 
     public function __construct()
