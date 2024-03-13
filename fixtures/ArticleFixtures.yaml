@@ -1,0 +1,6 @@
+App\Entity\Article:
+  post_{1..10}:
+    title (unique): "<words(3, true)>"
+    chapo: "<text(500)>"
+    competences: "<numberBetween(1, 20)>x @competence_*"
+    link (unique): '<url()>'
