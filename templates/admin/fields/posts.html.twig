@@ -1,0 +1,14 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+
+<div>
+    {% for value in field.value %}
+        <a href="{{ ea_url().setController('App\\Controller\\Admin\\PostCrudController')
+                            .setAction('detail')
+                            .setEntityId(value.id)}}">{{ value.title }}</a>
+        {% if not loop.last %}
+            <span>/<span>
+        {% endif %}
+    {% endfor %}
+</div>
