@@ -100,12 +100,12 @@ class Message
 
     public function isRead(): bool
     {
-        return ! is_null($this->getReadedAt());
+        return !is_null($this->getReadedAt());
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->id;
+        return 'message';
     }
 
     #[ORM\PrePersist]

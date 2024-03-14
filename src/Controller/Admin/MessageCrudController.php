@@ -3,18 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Message;
-use phpDocumentor\Reflection\Types\Boolean;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use App\Controller\Admin\Filter\MessageReadFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class MessageCrudController extends AbstractCrudController
 {
@@ -31,7 +29,7 @@ class MessageCrudController extends AbstractCrudController
             DateTimeField::new('createdAt', 'Envoyé le'),
             DateTimeField::new('readedAt', 'Date de lecture')->onlyOnDetail(),
             BooleanField::new('readed', 'Lu')->renderAsSwitch(false),
-            TextEditorField::new('content', 'Message')->onlyOnDetail()
+            TextEditorField::new('content', 'Message')->onlyOnDetail(),
         ];
     }
 
@@ -41,6 +39,7 @@ class MessageCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->remove(Crud::PAGE_INDEX, Action::NEW)
             ->remove(Crud::PAGE_INDEX, Action::EDIT)
+            ->remove(Crud::PAGE_DETAIL, Action::EDIT)
         ;
     }
 
@@ -59,8 +58,7 @@ class MessageCrudController extends AbstractCrudController
         return $filters
             ->add('name')
             ->add('createdAt')
-            ->add('readed', 'lu')
-            // ->add(MessageReadFilter::new('read', 'lu ?')->setFormTypeOption('mapped', false))
+            ->add('readed')
         ;
     }
 }
