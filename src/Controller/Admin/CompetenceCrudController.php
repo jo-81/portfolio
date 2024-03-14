@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -27,6 +28,7 @@ class CompetenceCrudController extends AbstractCrudController
             SlugField::new('slug')->setTargetFieldName('name')->hideOnForm(),
             BooleanField::new('published', 'Publié ?')->hideOnForm(),
             ColorField::new('color', 'Couleur'),
+            CollectionField::new('posts')->onlyOnDetail()->setTemplatePath('admin/fields/posts.html.twig'),
         ];
     }
 
