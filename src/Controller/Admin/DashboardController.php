@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Competence;
+use App\Entity\Image;
 use App\Entity\Message;
 use App\Entity\Project;
 use App\Entity\User;
@@ -40,6 +41,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Liste des projets', 'fa fa-code', Project::class);
         yield MenuItem::linkToCrud('Liste des articles', 'fa fa-feather-pointed', Article::class);
         yield MenuItem::linkToCrud('Liste des compétences', 'fa fa-tags', Competence::class);
+        yield MenuItem::linkToCrud('Images', 'fa fa-images', Image::class);
         yield MenuItem::linkToCrud('Messages', 'fa fa-envelope', Message::class);
     }
 
