@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Post;
+use App\Form\ImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -32,6 +33,17 @@ class PostCrudController extends AbstractCrudController
             CollectionField::new('competences', 'Compétences')->onlyOnDetail()->setTemplatePath('admin/fields/competences.html.twig'),
             AssociationField::new('competences', 'Compétences')->onlyOnForms(),
             BooleanField::new('published', 'Publié ?')->hideOnForm(),
+
+            CollectionField::new('images')
+                ->setEntryType(ImageType::class)
+                ->setFormTypeOptions([
+                    'error_bubbling' => false,
+                    'by_reference' => false,
+                ])
+                ->setColumns('col-12 col-sm-6')
+                ->renderExpanded()
+                ->setEntryIsComplex()
+                ->onlyOnForms(),
         ];
     }
 

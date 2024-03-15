@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -24,6 +25,7 @@ class ProjectCrudController extends PostCrudController
             UrlField::new('github', 'Github')->hideOnIndex(),
             UrlField::new('link', 'Website')->hideOnIndex(),
             TextEditorField::new('content', 'Contenue')->hideOnIndex(),
+            ArrayField::new('images')->onlyOnDetail(),
         ];
 
         return array_merge($fieldsParent, $datas); /* @phpstan-ignore-line */
@@ -44,7 +46,7 @@ class ProjectCrudController extends PostCrudController
             )
 
             ->setPaginatorPageSize(15)
-            ->setDefaultSort(['id' => 'ASC'])
+            ->setDefaultSort(['id' => 'DESC'])
         ;
     }
 }

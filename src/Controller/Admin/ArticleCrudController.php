@@ -38,7 +38,7 @@ class ArticleCrudController extends PostCrudController
             )
 
             ->setPaginatorPageSize(15)
-            ->setDefaultSort(['id' => 'ASC'])
+            ->setDefaultSort(['id' => 'DESC'])
         ;
     }
 }
