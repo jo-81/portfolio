@@ -56,9 +56,13 @@ abstract class Post
     #[ORM\ManyToMany(targetEntity: Competence::class, inversedBy: 'posts')]
     protected Collection $competences;
 
+    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'post', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $images;
+
     public function __construct()
     {
         $this->competences = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -172,5 +176,35 @@ abstract class Post
     public function setValueEditedAt(): void
     {
         $this->editedAt = new \DateTimeImmutable();
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getPost() === $this) {
+                $image->setPost(null);
+            }
+        }
+
+        return $this;
     }
 }
