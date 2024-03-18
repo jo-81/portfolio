@@ -20,6 +20,22 @@ class CompetenceRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Competence::class);
     }
+    
+    /**
+     * findCompetencesByPost
+     *
+     * @param  string|null $post
+     * @return mixed
+     */
+    public function findCompetencesByPost(?string $post = null)
+    {
+        $qb = $this->createQueryBuilder('c')->leftJoin('c.posts', 'p');
+        if (!is_null($post)) {
+            $qb->where('p instance of '.$post);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 
     //    /**
     //     * @return Competence[] Returns an array of Competence objects

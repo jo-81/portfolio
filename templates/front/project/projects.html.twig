@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio | {{ parent() }}{% endblock %}
+
+{% block body %}
+<div class="row align-items-start">
+    {% include "front/partials/_profile.html.twig" %}
+
+    <turbo-frame id="list-posts" class="col-12 col-xl-8 col-xxl-9">
+        <div class="row">
+            {% include "front/partials/_list-posts.html.twig" %}
+            {% include "front/partials/_list-competences.html.twig" %}
+        </div>
+    </frame>
+</div>
+{% endblock %}

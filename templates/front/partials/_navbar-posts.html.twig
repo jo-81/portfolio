@@ -1,0 +1,19 @@
+<div class="card card-body bg-white mb-4">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="{{ html_classes('nav-link mb-sm-3 mb-md-0', {
+                        'active border-bottom border-primary': app.request.attributes.get('_route') == 'homepage'
+                    }) }}" href="{{ path('homepage') }}">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="{{ html_classes('nav-link mb-sm-3 mb-md-0', {
+                        'active border-bottom border-primary': app.request.attributes.get('_route') == 'projects'
+                    }) }}" href="{{ path('projects') }}"><i class="fa-solid fa-code"></i> Projets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="{{ html_classes('nav-link mb-sm-3 mb-md-0', {
+                        'active border-bottom border-primary': app.request.attributes.get('_route') == 'articles'
+                    }) }}" href="{{ path('articles') }}"><i class="fa-solid fa-feather-pointed"></i> Articles</a>
+                </li>
+            </ul>
+        </div>

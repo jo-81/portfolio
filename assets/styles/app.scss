@@ -1,1 +1,101 @@
+/* GENERAL */
+$font-family-base: "Poppins", "sans-serif";
+$font-weight-base: 300;
+$line-height-base: 1.6;
+$body-bg: hsl(231, 55%,  97.5%);
+
+/* COLOR */
+$primary: #5e72e4;
+$secondary: hsl(231, 55%, 30%);;
+
+/* BORDER */
+$border-color-translucent: #e3e3e3;
+
+/* NAVBAR */
+$navbar-padding-y: 1.5rem;
+$navbar-light-color: rgba($primary, .65);
+$navbar-light-hover-color: rgba($primary, .80);
+
+/* BUTTON */
+$btn-font-size: .875rem;
+$btn-font-weight: 600;
+$btn-padding-y: 0.625rem;
+$btn-padding-x: 1.25rem;
+
+.btn {
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+/* FORM */
+$input-height: calc(1.5em + 1.25rem + 2px);
+$input-padding-y: .625rem;
+$input-padding-x: .75rem;
+$form-label-margin-bottom: 0.25rem;
+$form-label-font-weight: 400;
+$input-border-radius: 0.25rem;;
+
+/* CARD */
+$card-spacer-y: 1.75rem;
+$card-spacer-x: 1.75rem;
+$card-border-radius: 0;
+$card-bg: white;
+
+.card-message {
+    width: 85%;
+    &:not(.card-answer) {
+        background-color: $primary;
+        color: white;
+    }
+}   
+
+.card-answer {
+    margin-left: auto;
+    background-color: rgba($secondary, 0.15);
+}
+
+/* TYPOGRAPHIE */
+$headings-color: $secondary;
+$headings-font-weight: 600;
+
+/* TABS */
+$nav-link-font-weight: 400;
+$nav-pills-link-active-bg: white;
+$nav-pills-link-active-color: $primary;
+$nav-link-color: $secondary;
+$nav-pills-border-radius: 0;
+
+a {
+    font-weight: 400;
+}
+
+/* IMAGE */
+.over-images {
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba($secondary, 0.85);
+    }
+}
+
+.over-images-number {
+    position: absolute;
+    inset: 0;
+    color: white;
+    z-index: 2;
+    margin: auto;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+/* MODAL */
+$modal-content-border-width: 0;
+$modal-content-border-radius: 0;
+$modal-inner-padding: 0;
+
 @import '../../vendor/twbs/bootstrap/scss/bootstrap';
