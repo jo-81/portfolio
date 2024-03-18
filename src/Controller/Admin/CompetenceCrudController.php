@@ -26,7 +26,7 @@ class CompetenceCrudController extends AbstractCrudController
         return [
             TextField::new('name', 'Nom'),
             SlugField::new('slug')->setTargetFieldName('name')->hideOnForm(),
-            BooleanField::new('published', 'Publié ?')->hideOnForm(),
+            BooleanField::new('published', 'Publié ?')->hideWhenCreating(),
             ColorField::new('color', 'Couleur'),
             CollectionField::new('posts')->onlyOnDetail()->setTemplatePath('admin/fields/posts.html.twig'),
         ];

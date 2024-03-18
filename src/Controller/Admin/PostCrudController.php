@@ -32,7 +32,7 @@ class PostCrudController extends AbstractCrudController
             UrlField::new('link', 'Website')->hideOnIndex(),
             CollectionField::new('competences', 'Compétences')->onlyOnDetail()->setTemplatePath('admin/fields/competences.html.twig'),
             AssociationField::new('competences', 'Compétences')->onlyOnForms(),
-            BooleanField::new('published', 'Publié ?')->hideOnForm(),
+            BooleanField::new('published', 'Publié ?')->hideWhenCreating(),
 
             CollectionField::new('images')
                 ->setEntryType(ImageType::class)

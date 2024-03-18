@@ -1,6 +1,9 @@
 twig:
     file_name_pattern: '*.twig'
 
+    globals:
+        number_picture_post: 2
+
 when@test:
     twig:
         strict_variables: true
